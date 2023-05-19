@@ -1,0 +1,27 @@
+---
+title: "Importing_Data_Crena"
+author: "Andrew Crena"
+date: "2023-05-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### R Markdown
+
+Importing Data in the form of CSV Files
+
+#### This chunk of code is specifically for importing csv files into your working directory. This is operating under the assumption that your working directory contains the csv files being pulled in this chunk. The arguments are good opportunity to tell your system about any incorrect/missing values, so make sure to memorize them (atleast the common and relevant ones)!
+
+```{r}
+
+
+example_braindata <- read.csv("Brain_Data.csv", header=T, sep=",", na.strings=c("NA", "888", "999"))
+example_behaviordata <-read.csv("Bx_Data.csv", header=T, sep=",", na.strings=c("NA", "888", "999"))
+
+
+```
+
+#### It's important to remember that th data you are importing could have missing values, incorrect values, and other pieces of data that need to be attended to by the software. Usinfg the arguments in this chunk is a good example of weeding out the missing values and other data that isn't wanted.
