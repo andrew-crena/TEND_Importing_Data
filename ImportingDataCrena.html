@@ -367,15 +367,73 @@ working directory contains the csv files being pulled in this chunk. The
 arguments are good opportunity to tell your system about any
 incorrect/missing values, so make sure to memorize them (atleast the
 common and relevant ones)!</h4>
-<pre class="r"><code>example_braindata &lt;- read.csv(&quot;Brain_Data.csv&quot;, header=T, sep=&quot;,&quot;, na.strings=c(&quot;NA&quot;, &quot;888&quot;, &quot;999&quot;))
-example_behaviordata &lt;-read.csv(&quot;Bx_Data.csv&quot;, header=T, sep=&quot;,&quot;, na.strings=c(&quot;NA&quot;, &quot;888&quot;, &quot;999&quot;))</code></pre>
+<pre class="r"><code>example_brain_data &lt;- read.csv(&quot;Brain_Data.csv&quot;, header=T, sep=&quot;,&quot;,
+                              na.strings=c(&quot;NA&quot;, &quot;888&quot;, &quot;999&quot;))
+example_behavior_data &lt;-read.csv(&quot;Bx_Data.csv&quot;, header=T, sep=&quot;,&quot;,
+                                na.strings=c(&quot;NA&quot;, &quot;888&quot;, &quot;999&quot;))</code></pre>
 </div>
-<div id="its-important-to-remember-that-th-data-you-are-importing-could-have-missing-values-incorrect-values-and-other-pieces-of-data-that-need-to-be-attended-to-by-the-software.-usinfg-the-arguments-in-this-chunk-is-a-good-example-of-weeding-out-the-missing-values-and-other-data-that-isnt-wanted." class="section level4">
+<div id="its-important-to-remember-that-th-data-you-are-importing-could-have-missing-values-incorrect-values-and-other-pieces-of-data-that-need-to-be-attended-to-by-the-software.-using-the-arguments-in-this-chunk-is-a-good-example-of-weeding-out-the-missing-values-and-other-data-that-isnt-wanted." class="section level4">
 <h4>It’s important to remember that th data you are importing could have
 missing values, incorrect values, and other pieces of data that need to
-be attended to by the software. Usinfg the arguments in this chunk is a
+be attended to by the software. Using the arguments in this chunk is a
 good example of weeding out the missing values and other data that isn’t
 wanted.</h4>
+</div>
+</div>
+<div id="what-if-we-are-downloading-csv-files-from-the-internet-to-do-some-exploratory-data-analysis-for-example-what-if-i-found-an-interesting-data-set-on-kaggle" class="section level3">
+<h3>What if we are downloading csv files from the internet to do some
+exploratory data analysis? For example, what if i found an interesting
+data set on Kaggle?</h3>
+<div id="this-next-code-chunk-is-an-example-of-downloading-a-data-set-from-the-internet-so-that-it-is-expressed-as-a-data-frame-in-your-working-directory.-it-is-a-depression-data-set-randomly-chosen-on-kaggle-and-i-want-to-write-the-code-that-will-grab-it-from-the-specific-url-that-refers-to-the-specific-data-set-or-some-code-that-will-achieve-the-same-goal-but-in-different-ways.-using-kaggle-data-usually-requires-installing-the-kaggle-package-and-having-permission-or-an-api-token-to-use-the-data-for-exploratory-analysis.-the-data-set-can-be-found-with-this-link-httpswww.kaggle.comdatasetsarashnicthe-depression-dataset-always-remember-directories-wheres-your-data-coming-fromgoing-to" class="section level4">
+<h4>This next code chunk is an example of downloading a data set from
+the internet so that it is expressed as a data frame in your working
+directory. It is a depression data set randomly chosen on Kaggle, and I
+want to write the code that will grab it from the specific URL that
+refers to the specific data set, or some code that will achieve the same
+goal but in different ways. Using Kaggle data usually requires
+installing the Kaggle package, and having permission or an API token to
+use the data for exploratory analysis. the data set can be found with
+this link: <a href="https://www.kaggle.com/datasets/arashnic/the-depression-dataset" class="uri">https://www.kaggle.com/datasets/arashnic/the-depression-dataset</a>
+ALWAYS REMEMBER DIRECTORIES!!!! Where’s your data coming from/going
+to?</h4>
+</div>
+<div id="in-this-example-we-will-show-how-to-get-the-data-set-into-a-df-after-downloading-it-and-extracting-the-zip-file-i-find-this-to-be-easiest-at-my-current-skill-level" class="section level4">
+<h4>In this example, we will show how to get the data set into a df
+after downloading it and extracting the zip file (I find this to be
+easiest at my current skill level)</h4>
+<pre class="r"><code># Assuming the csv file has been extracted and is in your working directory....
+# We won&#39;t focus on additional arguments, so that we can focus on one thing at a time
+
+library(readr)
+scores &lt;- read_csv(&quot;scores.csv&quot;)</code></pre>
+<pre><code>## Rows: 55 Columns: 12
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (3): number, age, edu
+## dbl (9): days, gender, afftype, melanch, inpatient, marriage, work, madrs1, ...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>View(scores)
+
+# Next, view your assigned variable to make sure that your data frame was made properly
+View(scores)</code></pre>
+</div>
+<div id="remember-that-the-bottom-right-quadrant-is-excellent-for-doing-these-same-tasks-just-not-programatically.-however-lets-practice-unzipping-a-file-obtained-from-the-internet" class="section level4">
+<h4>Remember that the bottom right quadrant is excellent for doing these
+same tasks, just not programatically. However, let’s practice unzipping
+a file obtained from the internet!</h4>
+<pre class="r"><code># Assuming the ZIPPED csv file has been extracted and is in your working directory....
+
+# Unzip the downloaded file
+unzip(&quot;DEP_DATA_KAGGLE.zip&quot;)</code></pre>
+<pre><code>## Warning in unzip(&quot;DEP_DATA_KAGGLE.zip&quot;): error 1 in extracting from zip file</code></pre>
+<pre class="r"><code># Read the unzipped CSV file into a dataframe
+data &lt;- read.csv(&quot;scores.csv&quot;)
+
+# Make sure to check if your data frame was created and looks good!
+
+View(data)</code></pre>
 </div>
 </div>
 

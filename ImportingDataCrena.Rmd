@@ -37,11 +37,13 @@ example_behavior_data <-read.csv("Bx_Data.csv", header=T, sep=",",
 #### In this example, we will show how to get the data set into a df after downloading it and extracting the zip file (I find this to be easiest at my current skill level)
 
 ```{r}
+
 # Assuming the csv file has been extracted and is in your working directory....
 # We won't focus on additional arguments, so that we can focus on one thing at a time
 
 library(readr)
 scores <- read_csv("scores.csv")
+View(scores)
 
 # Next, view your assigned variable to make sure that your data frame was made properly
 View(scores)
