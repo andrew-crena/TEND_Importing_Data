@@ -11,8 +11,9 @@ output:
 
 ### [ root.dir = "C:\Users\adcre\OneDrive\Documents\R\_Programming" ]
 
-```{r setup, include = TRUE}
-knitr::opts_chunk$set(root.dir = "C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming", echo = TRUE)
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming\\TEND")
 ```
 
 # R Markdown
@@ -21,7 +22,7 @@ Importing Data in the form of CSV Files
 
 ### First things first, I will provide various ways of setting your working directory and knowing what directory you are pulling from and when. In the past, I have written an entire R Markdown file without telling the computer what directory I want to pull from. This became increasingly frustrating when I started changing file locations and working directories in such a way that prevented me from setting a working directory for the entire markdown file. Thus, I am creating this code chunk as a way of "ironing-out any wrinkles" when it comes to remaining hyperaware of the working directory you are interested in.
 
-```{r working directory, echo = TRUE}
+```{r working directory, include=TRUE, echo = TRUE}
 
 # First, we will learn how to set a working directory for an entire Rmd file, so that you don't have to worry about calling to it in later chunks. We will also learn how to specify explicit directories in specific chunks, but this method serves as an efficient way to centralize your directory for a lengthy or complex markdown file. This is actually accomplished in the first code chunk of this Rmd file, above "### R Markdown". WRITE THIS ARGUMENT INTO THAT KNITR FUNCTION (look above):
 # [ root.dir = "C:\Users\adcre\OneDrive\Documents\R_Programming" ]
@@ -33,7 +34,7 @@ Importing Data in the form of CSV Files
 
 ### This chunk of code is specifically for importing csv files into your working directory. This is operating under the assumption that your working directory contains the csv files being pulled in this chunk. The arguments are good opportunity to tell your system about any incorrect/missing values, so make sure to memorize them (atleast the common and relevant ones)!
 
-```{r library, echo = FALSE}
+```{r library, include=TRUE, echo = TRUE}
 
 # setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
 
@@ -44,6 +45,8 @@ library(dplyr)
 Brain_Data <- read_csv("Brain_Data.csv")
 
 Bx_Data <- read_csv("Bx_Data.csv")
+
+str((Bx_Data))
 ```
 
 #### It's important to remember that th data you are importing could have missing values, incorrect values, and other pieces of data that need to be attended to by the software. Using the arguments in this chunk is a good example of weeding out the missing values and other data that isn't wanted.
@@ -54,7 +57,7 @@ Bx_Data <- read_csv("Bx_Data.csv")
 
 #### In this example, we will show how to get the data set into a df after downloading it and extracting the zip file (I find this to be easiest at my current skill level)
 
-```{r csv files, echo = TRUE}
+```{r csv files, include=TRUE, echo = TRUE}
 
 # setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
 
@@ -75,7 +78,7 @@ str(scores)
 
 ### Remember that the bottom right quadrant is excellent for doing these same tasks, just not programatically. However, let's practice unzipping a file obtained from the internet!
 
-```{r unzip, echo=FALSE}
+```{r unzip, include=TRUE, echo=FALSE}
 
 # setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
 
