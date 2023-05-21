@@ -7,25 +7,43 @@ output:
   html_document: default
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+### First, we will learn how to set a working directory for an entire Rmd file, so that you don't have to worry about calling to it in later chunks. We will also learn how to specify explicit directories in specific chunks, but this method serves as an efficient way to centralize your directory for a lengthy or complex markdown file. This is actually accomplished in the first code chunk of this Rmd file, above "\### R Markdown". WRITE THIS ARGUMENT INTO THAT KNITR FUNCTION (look above):
+
+### [ root.dir = "C:\Users\adcre\OneDrive\Documents\R\_Programming" ]
+
+```{r setup, include = TRUE}
+knitr::opts_chunk$set(root.dir = "C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming", echo = TRUE)
 ```
 
-### R Markdown
+# R Markdown
 
 Importing Data in the form of CSV Files
 
-#### This chunk of code is specifically for importing csv files into your working directory. This is operating under the assumption that your working directory contains the csv files being pulled in this chunk. The arguments are good opportunity to tell your system about any incorrect/missing values, so make sure to memorize them (atleast the common and relevant ones)!
+### First things first, I will provide various ways of setting your working directory and knowing what directory you are pulling from and when. In the past, I have written an entire R Markdown file without telling the computer what directory I want to pull from. This became increasingly frustrating when I started changing file locations and working directories in such a way that prevented me from setting a working directory for the entire markdown file. Thus, I am creating this code chunk as a way of "ironing-out any wrinkles" when it comes to remaining hyperaware of the working directory you are interested in.
 
-```{r}
+```{r working directory, echo = TRUE}
 
+# First, we will learn how to set a working directory for an entire Rmd file, so that you don't have to worry about calling to it in later chunks. We will also learn how to specify explicit directories in specific chunks, but this method serves as an efficient way to centralize your directory for a lengthy or complex markdown file. This is actually accomplished in the first code chunk of this Rmd file, above "### R Markdown". WRITE THIS ARGUMENT INTO THAT KNITR FUNCTION (look above):
+# [ root.dir = "C:\Users\adcre\OneDrive\Documents\R_Programming" ]
 
-example_brain_data <- read.csv("Brain_Data.csv", header=T, sep=",",
-                              na.strings=c("NA", "888", "999"))
-example_behavior_data <-read.csv("Bx_Data.csv", header=T, sep=",",
-                                na.strings=c("NA", "888", "999"))
+# This may seem obvious, but setting a working directory at the top of a specific code chunk will allow the computer to know what directory you would like to pull from in a specific code chunk. When making a markdown file. Ideally, this line of code would be at the top of your code chunk, before any functions need to interact beyond the console.
+ # setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
+# getwd()
+```
 
+### This chunk of code is specifically for importing csv files into your working directory. This is operating under the assumption that your working directory contains the csv files being pulled in this chunk. The arguments are good opportunity to tell your system about any incorrect/missing values, so make sure to memorize them (atleast the common and relevant ones)!
 
+```{r library, echo = TRUE}
+
+setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
+
+library(readr)
+library(tidyverse)
+library(dplyr)
+
+Brain_Data <- read_csv("Brain_Data.csv")
+
+Bx_Data <- read_csv("Bx_Data.csv")
 ```
 
 #### It's important to remember that th data you are importing could have missing values, incorrect values, and other pieces of data that need to be attended to by the software. Using the arguments in this chunk is a good example of weeding out the missing values and other data that isn't wanted.
@@ -36,7 +54,9 @@ example_behavior_data <-read.csv("Bx_Data.csv", header=T, sep=",",
 
 #### In this example, we will show how to get the data set into a df after downloading it and extracting the zip file (I find this to be easiest at my current skill level)
 
-```{r}
+```{r csv files, echo=TRUE}
+
+setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
 
 # Assuming the csv file has been extracted and is in your working directory....
 # We won't focus on additional arguments, so that we can focus on one thing at a time
@@ -48,21 +68,33 @@ View(scores)
 # Next, view your assigned variable to make sure that your data frame was made properly
 View(scores)
 
+# Instead of using the view function, you can also use the str or "structure" function, which will give you a shorter but more descriptive output of the entire data set
+str(scores)
+
 ```
 
-#### Remember that the bottom right quadrant is excellent for doing these same tasks, just not programatically. However, let's practice unzipping a file obtained from the internet!
+### Remember that the bottom right quadrant is excellent for doing these same tasks, just not programatically. However, let's practice unzipping a file obtained from the internet!
 
-```{r}
+```{r unzip, echo=FALSE}
+
+setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
 
 # Assuming the ZIPPED csv file has been extracted and is in your working directory....
+
+# setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
 
 # Unzip the downloaded file
 unzip("DEP_DATA_KAGGLE.zip")
 
 # Read the unzipped CSV file into a dataframe
-data <- read.csv("scores.csv")
+library(readr)
+scores <- read_csv("scores.csv")
 
 # Make sure to check if your data frame was created and looks good!
 
-View(data)
+str(scores)
 ```
+
+##REFLECTION
+
+###I first want to make note of a mistake I made when setting working directories within an R Markdown file, and running the code through the console expecting the computer to know where the data is at all times. After speaking with GPT, it appears that I failed to establish a reliable method of knowing what directory I am pulling from (or at least, attempting to pull from).
