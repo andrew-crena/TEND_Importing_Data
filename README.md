@@ -1,2 +1,2 @@
 # -TEND-Practice-Importing-Data
-A markdown file that serves as a guide to importing csv files into your working directory in RStudio. I will try my best to explain the reasoning behind my code, thank you for reading! Feedback is always appreciated :).
+A markdown file that serves as a guide to importing csv files into your working directory in RStudio. Since I am constantly learning new and more effective ways to solve problems, this is a living, breathing repository that gives a good idea of my capabilities in important data. I will try my best to explain the reasoning behind my code, thank you for reading! Feedback is always appreciated :).
