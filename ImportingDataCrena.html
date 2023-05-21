@@ -357,21 +357,77 @@ display: none;
 </div>
 
 
-<div id="r-markdown" class="section level3">
-<h3>R Markdown</h3>
+<div id="first-we-will-learn-how-to-set-a-working-directory-for-an-entire-rmd-file-so-that-you-dont-have-to-worry-about-calling-to-it-in-later-chunks.-we-will-also-learn-how-to-specify-explicit-directories-in-specific-chunks-but-this-method-serves-as-an-efficient-way-to-centralize-your-directory-for-a-lengthy-or-complex-markdown-file.-this-is-actually-accomplished-in-the-first-code-chunk-of-this-rmd-file-above-r-markdown.-write-this-argument-into-that-knitr-function-look-above" class="section level3">
+<h3>First, we will learn how to set a working directory for an entire
+Rmd file, so that you don’t have to worry about calling to it in later
+chunks. We will also learn how to specify explicit directories in
+specific chunks, but this method serves as an efficient way to
+centralize your directory for a lengthy or complex markdown file. This
+is actually accomplished in the first code chunk of this Rmd file, above
+“### R Markdown”. WRITE THIS ARGUMENT INTO THAT KNITR FUNCTION (look
+above):</h3>
+</div>
+<div id="root.dir-c_programming" class="section level3">
+<h3>[ root.dir = “C:_Programming” ]</h3>
+<pre class="r"><code>knitr::opts_chunk$set(root.dir = &quot;C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming&quot;, echo = TRUE)</code></pre>
+</div>
+<div id="r-markdown" class="section level1">
+<h1>R Markdown</h1>
 <p>Importing Data in the form of CSV Files</p>
-<div id="this-chunk-of-code-is-specifically-for-importing-csv-files-into-your-working-directory.-this-is-operating-under-the-assumption-that-your-working-directory-contains-the-csv-files-being-pulled-in-this-chunk.-the-arguments-are-good-opportunity-to-tell-your-system-about-any-incorrectmissing-values-so-make-sure-to-memorize-them-atleast-the-common-and-relevant-ones" class="section level4">
-<h4>This chunk of code is specifically for importing csv files into your
+<div id="first-things-first-i-will-provide-various-ways-of-setting-your-working-directory-and-knowing-what-directory-you-are-pulling-from-and-when.-in-the-past-i-have-written-an-entire-r-markdown-file-without-telling-the-computer-what-directory-i-want-to-pull-from.-this-became-increasingly-frustrating-when-i-started-changing-file-locations-and-working-directories-in-such-a-way-that-prevented-me-from-setting-a-working-directory-for-the-entire-markdown-file.-thus-i-am-creating-this-code-chunk-as-a-way-of-ironing-out-any-wrinkles-when-it-comes-to-remaining-hyperaware-of-the-working-directory-you-are-interested-in." class="section level3">
+<h3>First things first, I will provide various ways of setting your
+working directory and knowing what directory you are pulling from and
+when. In the past, I have written an entire R Markdown file without
+telling the computer what directory I want to pull from. This became
+increasingly frustrating when I started changing file locations and
+working directories in such a way that prevented me from setting a
+working directory for the entire markdown file. Thus, I am creating this
+code chunk as a way of “ironing-out any wrinkles” when it comes to
+remaining hyperaware of the working directory you are interested
+in.</h3>
+<pre class="r"><code># First, we will learn how to set a working directory for an entire Rmd file, so that you don&#39;t have to worry about calling to it in later chunks. We will also learn how to specify explicit directories in specific chunks, but this method serves as an efficient way to centralize your directory for a lengthy or complex markdown file. This is actually accomplished in the first code chunk of this Rmd file, above &quot;### R Markdown&quot;. WRITE THIS ARGUMENT INTO THAT KNITR FUNCTION (look above):
+# [ root.dir = &quot;C:\Users\adcre\OneDrive\Documents\R_Programming&quot; ]
+
+# This may seem obvious, but setting a working directory at the top of a specific code chunk will allow the computer to know what directory you would like to pull from in a specific code chunk. When making a markdown file. Ideally, this line of code would be at the top of your code chunk, before any functions need to interact beyond the console.
+ # setwd(&quot;C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming&quot;)
+# getwd()</code></pre>
+</div>
+<div id="this-chunk-of-code-is-specifically-for-importing-csv-files-into-your-working-directory.-this-is-operating-under-the-assumption-that-your-working-directory-contains-the-csv-files-being-pulled-in-this-chunk.-the-arguments-are-good-opportunity-to-tell-your-system-about-any-incorrectmissing-values-so-make-sure-to-memorize-them-atleast-the-common-and-relevant-ones" class="section level3">
+<h3>This chunk of code is specifically for importing csv files into your
 working directory. This is operating under the assumption that your
 working directory contains the csv files being pulled in this chunk. The
 arguments are good opportunity to tell your system about any
 incorrect/missing values, so make sure to memorize them (atleast the
-common and relevant ones)!</h4>
-<pre class="r"><code>example_brain_data &lt;- read.csv(&quot;Brain_Data.csv&quot;, header=T, sep=&quot;,&quot;,
-                              na.strings=c(&quot;NA&quot;, &quot;888&quot;, &quot;999&quot;))
-example_behavior_data &lt;-read.csv(&quot;Bx_Data.csv&quot;, header=T, sep=&quot;,&quot;,
-                                na.strings=c(&quot;NA&quot;, &quot;888&quot;, &quot;999&quot;))</code></pre>
-</div>
+common and relevant ones)!</h3>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.2.3</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.2.3</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 4.2.3</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.2.3</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ purrr     1.0.1
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
+## Rows: 49 Columns: 7
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): Group
+## dbl (6): ID, RSFC1, RSFC2, RSFC3, RSFC4, RSFC5
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## Rows: 55 Columns: 32
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (2): SubjID, Group
+## dbl (30): ID, Gender, Sex, Ethnicity, Race, Puberty, Age_at_Bx, Age_at_Scan,...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div id="its-important-to-remember-that-th-data-you-are-importing-could-have-missing-values-incorrect-values-and-other-pieces-of-data-that-need-to-be-attended-to-by-the-software.-using-the-arguments-in-this-chunk-is-a-good-example-of-weeding-out-the-missing-values-and-other-data-that-isnt-wanted." class="section level4">
 <h4>It’s important to remember that th data you are importing could have
 missing values, incorrect values, and other pieces of data that need to
@@ -401,7 +457,9 @@ to?</h4>
 <h4>In this example, we will show how to get the data set into a df
 after downloading it and extracting the zip file (I find this to be
 easiest at my current skill level)</h4>
-<pre class="r"><code># Assuming the csv file has been extracted and is in your working directory....
+<pre class="r"><code># setwd(&quot;C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming&quot;)
+
+# Assuming the csv file has been extracted and is in your working directory....
 # We won&#39;t focus on additional arguments, so that we can focus on one thing at a time
 
 library(readr)
@@ -417,23 +475,90 @@ scores &lt;- read_csv(&quot;scores.csv&quot;)</code></pre>
 <pre class="r"><code>View(scores)
 
 # Next, view your assigned variable to make sure that your data frame was made properly
-View(scores)</code></pre>
+View(scores)
+
+# Instead of using the view function, you can also use the str or &quot;structure&quot; function, which will give you a shorter but more descriptive output of the entire data set
+str(scores)</code></pre>
+<pre><code>## spc_tbl_ [55 × 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ number   : chr [1:55] &quot;condition_1&quot; &quot;condition_2&quot; &quot;condition_3&quot; &quot;condition_4&quot; ...
+##  $ days     : num [1:55] 11 18 13 13 13 7 11 5 13 9 ...
+##  $ gender   : num [1:55] 2 2 1 2 2 1 1 2 2 2 ...
+##  $ age      : chr [1:55] &quot;35-39&quot; &quot;40-44&quot; &quot;45-49&quot; &quot;25-29&quot; ...
+##  $ afftype  : num [1:55] 2 1 2 2 2 2 1 2 1 2 ...
+##  $ melanch  : num [1:55] 2 2 2 2 2 2 NA NA NA 2 ...
+##  $ inpatient: num [1:55] 2 2 2 2 2 2 2 2 2 2 ...
+##  $ edu      : chr [1:55] &quot;6-10&quot; &quot;6-10&quot; &quot;6-10&quot; &quot;11-15&quot; ...
+##  $ marriage : num [1:55] 1 2 2 1 2 1 2 1 1 1 ...
+##  $ work     : num [1:55] 2 2 2 1 2 2 1 2 2 2 ...
+##  $ madrs1   : num [1:55] 19 24 24 20 26 18 24 20 26 28 ...
+##  $ madrs2   : num [1:55] 19 11 25 16 26 15 25 16 26 21 ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   number = col_character(),
+##   ..   days = col_double(),
+##   ..   gender = col_double(),
+##   ..   age = col_character(),
+##   ..   afftype = col_double(),
+##   ..   melanch = col_double(),
+##   ..   inpatient = col_double(),
+##   ..   edu = col_character(),
+##   ..   marriage = col_double(),
+##   ..   work = col_double(),
+##   ..   madrs1 = col_double(),
+##   ..   madrs2 = col_double()
+##   .. )
+##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
 </div>
-<div id="remember-that-the-bottom-right-quadrant-is-excellent-for-doing-these-same-tasks-just-not-programatically.-however-lets-practice-unzipping-a-file-obtained-from-the-internet" class="section level4">
-<h4>Remember that the bottom right quadrant is excellent for doing these
+</div>
+<div id="remember-that-the-bottom-right-quadrant-is-excellent-for-doing-these-same-tasks-just-not-programatically.-however-lets-practice-unzipping-a-file-obtained-from-the-internet" class="section level3">
+<h3>Remember that the bottom right quadrant is excellent for doing these
 same tasks, just not programatically. However, let’s practice unzipping
-a file obtained from the internet!</h4>
-<pre class="r"><code># Assuming the ZIPPED csv file has been extracted and is in your working directory....
-
-# Unzip the downloaded file
-unzip(&quot;DEP_DATA_KAGGLE.zip&quot;)</code></pre>
+a file obtained from the internet!</h3>
 <pre><code>## Warning in unzip(&quot;DEP_DATA_KAGGLE.zip&quot;): error 1 in extracting from zip file</code></pre>
-<pre class="r"><code># Read the unzipped CSV file into a dataframe
-data &lt;- read.csv(&quot;scores.csv&quot;)
-
-# Make sure to check if your data frame was created and looks good!
-
-View(data)</code></pre>
+<pre><code>## Rows: 55 Columns: 12
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (3): number, age, edu
+## dbl (9): days, gender, afftype, melanch, inpatient, marriage, work, madrs1, ...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## spc_tbl_ [55 × 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ number   : chr [1:55] &quot;condition_1&quot; &quot;condition_2&quot; &quot;condition_3&quot; &quot;condition_4&quot; ...
+##  $ days     : num [1:55] 11 18 13 13 13 7 11 5 13 9 ...
+##  $ gender   : num [1:55] 2 2 1 2 2 1 1 2 2 2 ...
+##  $ age      : chr [1:55] &quot;35-39&quot; &quot;40-44&quot; &quot;45-49&quot; &quot;25-29&quot; ...
+##  $ afftype  : num [1:55] 2 1 2 2 2 2 1 2 1 2 ...
+##  $ melanch  : num [1:55] 2 2 2 2 2 2 NA NA NA 2 ...
+##  $ inpatient: num [1:55] 2 2 2 2 2 2 2 2 2 2 ...
+##  $ edu      : chr [1:55] &quot;6-10&quot; &quot;6-10&quot; &quot;6-10&quot; &quot;11-15&quot; ...
+##  $ marriage : num [1:55] 1 2 2 1 2 1 2 1 1 1 ...
+##  $ work     : num [1:55] 2 2 2 1 2 2 1 2 2 2 ...
+##  $ madrs1   : num [1:55] 19 24 24 20 26 18 24 20 26 28 ...
+##  $ madrs2   : num [1:55] 19 11 25 16 26 15 25 16 26 21 ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   number = col_character(),
+##   ..   days = col_double(),
+##   ..   gender = col_double(),
+##   ..   age = col_character(),
+##   ..   afftype = col_double(),
+##   ..   melanch = col_double(),
+##   ..   inpatient = col_double(),
+##   ..   edu = col_character(),
+##   ..   marriage = col_double(),
+##   ..   work = col_double(),
+##   ..   madrs1 = col_double(),
+##   ..   madrs2 = col_double()
+##   .. )
+##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
+<p>##REFLECTION</p>
+<p>###I first want to make note of a mistake I made when setting working
+directories within an R Markdown file, and running the code through the
+console expecting the computer to know where the data is at all times.
+After speaking with GPT, it appears that I failed to establish a
+reliable method of knowing what directory I am pulling from (or at
+least, attempting to pull from).</p>
 </div>
 </div>
 

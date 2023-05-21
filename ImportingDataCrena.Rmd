@@ -3,8 +3,8 @@ title: "Importing_Data_Crena"
 author: "Andrew Crena"
 date: "2023-05-19"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ### First, we will learn how to set a working directory for an entire Rmd file, so that you don't have to worry about calling to it in later chunks. We will also learn how to specify explicit directories in specific chunks, but this method serves as an efficient way to centralize your directory for a lengthy or complex markdown file. This is actually accomplished in the first code chunk of this Rmd file, above "\### R Markdown". WRITE THIS ARGUMENT INTO THAT KNITR FUNCTION (look above):
@@ -33,9 +33,9 @@ Importing Data in the form of CSV Files
 
 ### This chunk of code is specifically for importing csv files into your working directory. This is operating under the assumption that your working directory contains the csv files being pulled in this chunk. The arguments are good opportunity to tell your system about any incorrect/missing values, so make sure to memorize them (atleast the common and relevant ones)!
 
-```{r library, echo = TRUE}
+```{r library, echo = FALSE}
 
-setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
+# setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
 
 library(readr)
 library(tidyverse)
@@ -54,9 +54,9 @@ Bx_Data <- read_csv("Bx_Data.csv")
 
 #### In this example, we will show how to get the data set into a df after downloading it and extracting the zip file (I find this to be easiest at my current skill level)
 
-```{r csv files, echo=TRUE}
+```{r csv files, echo = TRUE}
 
-setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
+# setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
 
 # Assuming the csv file has been extracted and is in your working directory....
 # We won't focus on additional arguments, so that we can focus on one thing at a time
@@ -77,7 +77,7 @@ str(scores)
 
 ```{r unzip, echo=FALSE}
 
-setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
+# setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
 
 # Assuming the ZIPPED csv file has been extracted and is in your working directory....
 
