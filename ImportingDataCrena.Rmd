@@ -3,101 +3,126 @@ title: "Importing_Data_Crena"
 author: "Andrew Crena"
 date: "2023-05-19"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
-
-### First, we will learn how to set a working directory for an entire Rmd file, so that you don't have to worry about calling to it in later chunks. We will also learn how to specify explicit directories in specific chunks, but this method serves as an efficient way to centralize your directory for a lengthy or complex markdown file. This is actually accomplished in the first code chunk of this Rmd file, above "\### R Markdown". WRITE THIS ARGUMENT INTO THAT KNITR FUNCTION (look above):
-
-### [ root.dir = "C:\Users\adcre\OneDrive\Documents\R\_Programming" ]
-
-```{r setup, include=TRUE}
-knitr::opts_chunk$set(echo = TRUE)
-setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming\\TEND")
-```
 
 # R Markdown
 
-Importing Data in the form of CSV Files
+```{r setup, include=TRUE, echo=TRUE}
 
-### First things first, I will provide various ways of setting your working directory and knowing what directory you are pulling from and when. In the past, I have written an entire R Markdown file without telling the computer what directory I want to pull from. This became increasingly frustrating when I started changing file locations and working directories in such a way that prevented me from setting a working directory for the entire markdown file. Thus, I am creating this code chunk as a way of "ironing-out any wrinkles" when it comes to remaining hyperaware of the working directory you are interested in.
-
-```{r working directory, include=TRUE, echo = TRUE}
-
-# First, we will learn how to set a working directory for an entire Rmd file, so that you don't have to worry about calling to it in later chunks. We will also learn how to specify explicit directories in specific chunks, but this method serves as an efficient way to centralize your directory for a lengthy or complex markdown file. This is actually accomplished in the first code chunk of this Rmd file, above "### R Markdown". WRITE THIS ARGUMENT INTO THAT KNITR FUNCTION (look above):
-# [ root.dir = "C:\Users\adcre\OneDrive\Documents\R_Programming" ]
-
-# This may seem obvious, but setting a working directory at the top of a specific code chunk will allow the computer to know what directory you would like to pull from in a specific code chunk. When making a markdown file. Ideally, this line of code would be at the top of your code chunk, before any functions need to interact beyond the console.
- # setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
-# getwd()
+# When you know that you will be using the same directory throughout your entire R Markdown, using the 'root.dir' argument for the 'knitr' package. This package is widely used for integrating code, analysis, and reporting the results. It is a very useful, easy, and efficient way of remaining hyperaware of what directories you and your computer are interacting with
+knitr::opts_chunk$set(root.dir = "C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming\\TEND", echo = TRUE,  tidy.opts=list(width.cutoff=80),tidy=TRUE)
 ```
 
-### This chunk of code is specifically for importing csv files into your working directory. This is operating under the assumption that your working directory contains the csv files being pulled in this chunk. The arguments are good opportunity to tell your system about any incorrect/missing values, so make sure to memorize them (atleast the common and relevant ones)!
+## Importing Data in the form of Comma-Separated Value (.csv) Files! But first, some housekeeping:
 
-```{r library, include=TRUE, echo = TRUE}
+### Probably the most common way of ensuring that your working directory is correct is by using the 'setwd()' function, which I won't go into much detail about. Here is an example code:
 
-# setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
+```{r, include=TRUE, echo=TRUE}
 
-library(readr)
+setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming\\TEND")
+
+# Confirm by using 'getwd()'
+
+getwd()
+```
+
+### While the main objective of this Rmd is to serve as a reference sheet for importing data, I found myself focusing on other tasks that are closely related. That is why you will see tangential code or concepts, however if RStudio has taught me anything, it is that one problem can be solved a million ways! This includes packages like readr, tidyverse, and dplyr, and various functions and syntax within those packages. This project is a non-linear, discovery-learning-based approach, and so there is no priority for any one chunk in this Rmd, rather each one gets added on as I continue learning.
+
+### First things first, I will provide various ways of setting your working directory and checking directory status, especially as it pertains to your current project. In the past, I have written an entire R Markdown file without telling the computer what directory I want to pull from at the top lines/chunks of code. This became increasingly frustrating when I started changing file locations and working directories in such a way that prevented me from setting a wd for my markdown file. Thus, I am creating this chunk to "iron-out" anythung when it comes to remaining aware of the working directory you are interacting with.
+
+## Importing Data in the form of CSV Files (locally)
+
+### It is important to understand how our system is using a working directory for an entire Rmd file, so that you don't have to worry about calling to it in later chunks. We will also learn how to specify explicit directories in specific chunks, but this method serves as an efficient way to centralize your directory for a lengthy or complex markdown file. This is actually accomplished in the first code chunk of this Rmd file, above "\### R Markdown". WRITE THIS ARGUMENT INTO THAT KNITR FUNCTION:
+
+```{r wd for whole Rmd root.dir, warning = FALSE, echo = FALSE}
+
+# When establishing a wd for your whole Rmd, copy/paste this code into the first chunk into the knitr function. This saves me a lot of time and stress caused by me neglecting the specificity required to manage working directories
+root.dir = "path to your preferred directory, ENTER HERE"
+```
+
+### Another important tool I use is in the File Browser section (bottom right quadrant). Find the file or folder that you would like to set as your wd, and then press "files". An option to 'set as working directory' will be available. PRESS IT!
+
+### In addition, the File Browser introduces an option called 'synchronize working directory' when you have selected a specific file/folder. 'synchronize working directory' refers to a feature ensures that the current wd in your environment is synchronized with the location of your R script or project file. While there is no code (to my knowledge) that can achieve the same task, however I find this to be very useful when staying on top of my working directory.
+
+## GETWD() & SETWD()
+
+### This may seem obvious, but setting a working directory at the top of a specific code chunk will allow the computer to know what directory you would like to pull from in a specific code chunk. When making a markdown file. Ideally, this line of code would be at the top of your code chunk, before any functions need to interact beyond the console.
+
+```{r directory stuff, include=TRUE, warning=FALSE, echo=TRUE}
+setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
+getwd()
+```
+
+## MISTAKE/LEARNING LESSON:
+
+### When initially writing this code, I was not aware that 'tidyverse' contains many of the packages I was loading, even though they came with tidyverse. This will be important to remember, as it caused conflicts in my output. You just need 'tidyverse'. How Neat!
+
+```{r import prep, echo=TRUE, warning=TRUE, include=TRUE}
+
+#  in order to prevent conflicts from using multiple packages in the same notebook, I will use the 'conflicted' package
+library(conflicted)
 library(tidyverse)
-library(dplyr)
-
-Brain_Data <- read_csv("Brain_Data.csv")
-
-Bx_Data <- read_csv("Bx_Data.csv")
-
-str((Bx_Data))
 ```
 
-#### It's important to remember that th data you are importing could have missing values, incorrect values, and other pieces of data that need to be attended to by the software. Using the arguments in this chunk is a good example of weeding out the missing values and other data that isn't wanted.
+### At this point, I feel prepared to import the csv files into my working directory. I remain very cautious in these situations, but as long as you write comprehensive and intentional code, the data should run smoothly through your work.
 
-### What if we are downloading csv files from the internet to do some exploratory data analysis? For example, what if i found an interesting data set on Kaggle?
+```{r import csv, echo=TRUE, include=TRUE, warning=FALSE}
 
-#### This next code chunk is an example of downloading a data set from the internet so that it is expressed as a data frame in your working directory. It is a depression data set randomly chosen on Kaggle, and I want to write the code that will grab it from the specific URL that refers to the specific data set, or some code that will achieve the same goal but in different ways. Using Kaggle data usually requires installing the Kaggle package, and having permission or an API token to use the data for exploratory analysis. the data set can be found with this link: <https://www.kaggle.com/datasets/arashnic/the-depression-dataset> ALWAYS REMEMBER DIRECTORIES!!!! Where's your data coming from/going to?
+brain_data <- read_csv("Brain_Data.csv", show_col_types = FALSE) %>%
+     spec()
 
-#### In this example, we will show how to get the data set into a df after downloading it and extracting the zip file (I find this to be easiest at my current skill level)
+behavior_data <- read_csv("Bx_Data.csv", show_col_types = FALSE) %>%
+     spec()
+
+str((behavior_data))
+```
+
+### What if we are downloading csv files from the web to some exploratory analysis, like from Kaggle.com?
+
+#### This next code chunk is an example of downloading a data set from the internet so that it is expressed as a data frame in your working directory. It is a depression data set randomly chosen on Kaggle, and I want to write the code that will grab it from the specific URL that refers to the specific data set, or some code that will achieve the same goal but in different ways. The data set can be found with this link: <https://www.kaggle.com/datasets/arashnic/the-depression-dataset> In this example, we will show how to get the data set into a df after downloading it and extracting the zip file (I find this to be easiest at my current skill level)
 
 ```{r csv files, include=TRUE, echo = TRUE}
 
-# setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
-
-# Assuming the csv file has been extracted and is in your working directory....
-# We won't focus on additional arguments, so that we can focus on one thing at a time
-
-library(readr)
-scores <- read_csv("scores.csv")
-View(scores)
+# Assuming the csv file has been extracted and is in your working directory, he only arguments I will introduce in this chunk is the 'show_col_types' argument, which is a useful argument that comes with the 'readr' package. When show_col_types=FALSE, it will not show you the type of data that is in each column, and vice versa for show_col_types=TRUE. In other words, if you have a data set in which the column types (numeric, categorical, etc)
+library(tidyverse)
+dep_scores <- read_csv("scores.csv", show_col_types = FALSE)
+View(dep_scores)
 
 # Next, view your assigned variable to make sure that your data frame was made properly
-View(scores)
+View(dep_scores)
 
 # Instead of using the view function, you can also use the str or "structure" function, which will give you a shorter but more descriptive output of the entire data set
-str(scores)
-
+str(dep_scores)
 ```
 
 ### Remember that the bottom right quadrant is excellent for doing these same tasks, just not programatically. However, let's practice unzipping a file obtained from the internet!
 
-```{r unzip, include=TRUE, echo=FALSE}
-
-# setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
-
-# Assuming the ZIPPED csv file has been extracted and is in your working directory....
-
-# setwd("C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming")
-
-# Unzip the downloaded file
-unzip("DEP_DATA_KAGGLE.zip")
+```{r unzip, include=TRUE, echo=TRUE}
+# Assuming the ZIPPED csv file has been extracted and is in your working directory, unzip the downloaded file
+unzip("kaggle_zipped_data.zip")
 
 # Read the unzipped CSV file into a dataframe
 library(readr)
-scores <- read_csv("scores.csv")
+dep_scores <- read_csv("scores.csv", show_col_types = FALSE)
 
 # Make sure to check if your data frame was created and looks good!
-
-str(scores)
+str(dep_scores)
 ```
 
-##REFLECTION
+## Post-session REFLECTION:
 
-###I first want to make note of a mistake I made when setting working directories within an R Markdown file, and running the code through the console expecting the computer to know where the data is at all times. After speaking with GPT, it appears that I failed to establish a reliable method of knowing what directory I am pulling from (or at least, attempting to pull from).
+### I first want to make note of a mistake I made when setting working directories within an R Markdown file, and running the code through the console expecting the computer to know where the data is at all times. After speaking with GPT, it appears that I failed to establish a reliable method of knowing what directory I am pulling from (or at least, attempting to pull from).
+
+### One unexpected argument that I found myself using frequently was the 'include' and 'echo' arguments. If you choose TRUE for include, the output will contain the code chunk, whereas FALSE would omit that code. Same goes for 'echo', but this argument is referring to the OUTPUT being shown or not. Each function has their benefits in certain circumstances.
+```{r}
+# KRUPALIS ADVICE
+##subsetting data - casewise and listwise (by SID and by variable) - [,] syntax [r,c]
+##substringing values, be able to remove the "sub-" from our "sub-XXXX" SIDs
+##be able to import excel, csv, and text files into df 
+##merging datasets by SID/visit (full join, half join, left join, right join [dplyr])
+## packages (psych, plyr)
+
+```
+
