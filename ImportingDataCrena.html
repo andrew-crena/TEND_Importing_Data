@@ -366,14 +366,8 @@ centralize your directory for a lengthy or complex markdown file. This
 is actually accomplished in the first code chunk of this Rmd file, above
 “R Markdown”. WRITE THIS ARGUMENT INTO THAT KNITR FUNCTION (look
 above):</h3>
-</div>
-<div id="root.dir-c_programming" class="section level3">
-<h3>[ root.dir = “C:_Programming” ]</h3>
 <pre class="r"><code># This chunk is meant to set my wd for the project I am planning on completing. Look to other Rmd&#39;s of mine for alternative mthods of setting wd
-knitr::opts_chunk$set(root.dir = &quot;C:\\Users\\adcre\\OneDrive\\Desktop\\Desktop_RStudio&quot;,
-                      echo = TRUE, tidy=TRUE)
-getwd()</code></pre>
-<pre><code>## [1] &quot;C:/Users/adcre/OneDrive/Desktop/Desktop_RStudio&quot;</code></pre>
+setwd(&quot;C:\\Users\\adcre\\OneDrive\\Desktop\\Desktop_RStudio&quot;)</code></pre>
 </div>
 <div id="r-markdown" class="section level1">
 <h1>R Markdown</h1>

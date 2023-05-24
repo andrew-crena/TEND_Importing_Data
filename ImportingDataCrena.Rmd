@@ -9,14 +9,11 @@ output:
 
 ### First, we will learn how to set a working directory for an entire Rmd file, so that you don't have to worry about calling to it in later chunks. We will also learn how to specify explicit directories in specific chunks, but this method serves as an efficient way to centralize your directory for a lengthy or complex markdown file. This is actually accomplished in the first code chunk of this Rmd file, above "R Markdown". WRITE THIS ARGUMENT INTO THAT KNITR FUNCTION (look above):
 
-### [ root.dir = "C:\Users\adcre\OneDrive\Documents\R\_Programming" ]
 
 ```{r setup, include=TRUE}
 
 # This chunk is meant to set my wd for the project I am planning on completing. Look to other Rmd's of mine for alternative mthods of setting wd
-knitr::opts_chunk$set(root.dir = "C:\\Users\\adcre\\OneDrive\\Desktop\\Desktop_RStudio",
-                      echo = TRUE, tidy=TRUE)
-getwd()
+setwd("C:\\Users\\adcre\\OneDrive\\Desktop\\Desktop_RStudio")
 ```
 
 # R Markdown
