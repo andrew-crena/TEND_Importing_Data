@@ -357,35 +357,27 @@ display: none;
 </div>
 
 
+<div id="first-we-will-learn-how-to-set-a-working-directory-for-an-entire-rmd-file-so-that-you-dont-have-to-worry-about-calling-to-it-in-later-chunks.-we-will-also-learn-how-to-specify-explicit-directories-in-specific-chunks-but-this-method-serves-as-an-efficient-way-to-centralize-your-directory-for-a-lengthy-or-complex-markdown-file.-this-is-actually-accomplished-in-the-first-code-chunk-of-this-rmd-file-above-r-markdown.-write-this-argument-into-that-knitr-function-look-above" class="section level3">
+<h3>First, we will learn how to set a working directory for an entire
+Rmd file, so that you don’t have to worry about calling to it in later
+chunks. We will also learn how to specify explicit directories in
+specific chunks, but this method serves as an efficient way to
+centralize your directory for a lengthy or complex markdown file. This
+is actually accomplished in the first code chunk of this Rmd file, above
+“R Markdown”. WRITE THIS ARGUMENT INTO THAT KNITR FUNCTION (look
+above):</h3>
+</div>
+<div id="root.dir-c_programming" class="section level3">
+<h3>[ root.dir = “C:_Programming” ]</h3>
+<pre class="r"><code># This chunk is meant to set my wd for the project I am planning on completing. Look to other Rmd&#39;s of mine for alternative mthods of setting wd
+knitr::opts_chunk$set(root.dir = &quot;C:\\Users\\adcre\\OneDrive\\Desktop\\Desktop_RStudio&quot;,
+                      echo = TRUE, tidy=TRUE)
+getwd()</code></pre>
+<pre><code>## [1] &quot;C:/Users/adcre/OneDrive/Desktop/Desktop_RStudio&quot;</code></pre>
+</div>
 <div id="r-markdown" class="section level1">
 <h1>R Markdown</h1>
-<pre class="r"><code># When you know that you will be using the same directory throughout your entire R Markdown, using the &#39;root.dir&#39; argument for the &#39;knitr&#39; package. This package is widely used for integrating code, analysis, and reporting the results. It is a very useful, easy, and efficient way of remaining hyperaware of what directories you and your computer are interacting with
-knitr::opts_chunk$set(root.dir = &quot;C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming\\TEND&quot;, echo = TRUE,  tidy.opts=list(width.cutoff=80),tidy=TRUE)</code></pre>
-<div id="importing-data-in-the-form-of-comma-separated-value-.csv-files-but-first-some-housekeeping" class="section level2">
-<h2>Importing Data in the form of Comma-Separated Value (.csv) Files!
-But first, some housekeeping:</h2>
-<div id="probably-the-most-common-way-of-ensuring-that-your-working-directory-is-correct-is-by-using-the-setwd-function-which-i-wont-go-into-much-detail-about.-here-is-an-example-code" class="section level3">
-<h3>Probably the most common way of ensuring that your working directory
-is correct is by using the ‘setwd()’ function, which I won’t go into
-much detail about. Here is an example code:</h3>
-<pre class="r"><code>setwd(&quot;C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming\\TEND&quot;)
-
-# The, confirm by using &#39;getwd()&#39;
-
-getwd()</code></pre>
-<pre><code>## [1] &quot;C:/Users/adcre/OneDrive/Documents/R_Programming/TEND&quot;</code></pre>
-</div>
-</div>
-<div id="while-the-main-objective-of-this-rmd-is-to-serve-as-a-reference-sheet-for-importing-data-i-found-myself-focusing-on-other-tasks-that-are-closely-related.-that-is-why-you-will-see-tangential-code-or-concepts-however-if-rstudio-has-taught-me-anything-it-is-that-one-problem-can-be-solved-a-million-ways-this-includes-packages-like-readr-tidyverse-and-dplyr-and-various-functions-and-syntax-within-those-packages.-this-project-is-a-non-linear-discovery-learning-based-approach-and-so-there-is-no-priority-for-any-one-chunk-in-this-rmd-rather-each-one-gets-added-on-as-i-continue-learning." class="section level2">
-<h2>While the main objective of this Rmd is to serve as a reference
-sheet for importing data, I found myself focusing on other tasks that
-are closely related. That is why you will see tangential code or
-concepts, however if RStudio has taught me anything, it is that one
-problem can be solved a million ways! This includes packages like readr,
-tidyverse, and dplyr, and various functions and syntax within those
-packages. This project is a non-linear, discovery-learning-based
-approach, and so there is no priority for any one chunk in this Rmd,
-rather each one gets added on as I continue learning.</h2>
+<p>Importing Data in the form of CSV Files</p>
 <div id="first-things-first-i-will-provide-various-ways-of-setting-your-working-directory-and-knowing-what-directory-you-are-pulling-from-and-when.-in-the-past-i-have-written-an-entire-r-markdown-file-without-telling-the-computer-what-directory-i-want-to-pull-from.-this-became-increasingly-frustrating-when-i-started-changing-file-locations-and-working-directories-in-such-a-way-that-prevented-me-from-setting-a-working-directory-for-the-entire-markdown-file.-thus-i-am-creating-this-code-chunk-as-a-way-of-ironing-out-any-wrinkles-when-it-comes-to-remaining-hyperaware-of-the-working-directory-you-are-interested-in." class="section level3">
 <h3>First things first, I will provide various ways of setting your
 working directory and knowing what directory you are pulling from and
@@ -397,145 +389,174 @@ working directory for the entire markdown file. Thus, I am creating this
 code chunk as a way of “ironing-out any wrinkles” when it comes to
 remaining hyperaware of the working directory you are interested
 in.</h3>
+<pre class="r"><code># First, we will learn how to set a working directory for an entire Rmd file, so that you don&#39;t have to worry about calling to it in later chunks. We will also learn how to specify explicit directories in specific chunks, but this method serves as an efficient way to centralize your directory for a lengthy or complex markdown file. This is actually accomplished in the first code chunk of this Rmd file, above &quot;### R Markdown&quot;. WRITE THIS ARGUMENT INTO THAT KNITR FUNCTION (look above):
+# [ root.dir = &quot;C:\Users\adcre\OneDrive\Documents\R_Programming&quot; ]
+
+# This may seem obvious, but setting a working directory at the top of a specific code chunk will allow the computer to know what directory you would like to pull from in a specific code chunk. When making a markdown file. Ideally, this line of code would be at the top of your code chunk, before any functions need to interact beyond the console.
+ # setwd(&quot;C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming&quot;)
+# getwd()</code></pre>
 </div>
-</div>
-<div id="importing-data-in-the-form-of-csv-files" class="section level2">
-<h2>Importing Data in the form of CSV Files</h2>
-<div id="first-we-will-learn-how-to-set-a-working-directory-for-an-entire-rmd-file-so-that-you-dont-have-to-worry-about-calling-to-it-in-later-chunks.-we-will-also-learn-how-to-specify-explicit-directories-in-specific-chunks-but-this-method-serves-as-an-efficient-way-to-centralize-your-directory-for-a-lengthy-or-complex-markdown-file.-this-is-actually-accomplished-in-the-first-code-chunk-of-this-rmd-file-above-r-markdown.-write-this-argument-into-that-knitr-function" class="section level3">
-<h3>First, we will learn how to set a working directory for an entire
-Rmd file, so that you don’t have to worry about calling to it in later
-chunks. We will also learn how to specify explicit directories in
-specific chunks, but this method serves as an efficient way to
-centralize your directory for a lengthy or complex markdown file. This
-is actually accomplished in the first code chunk of this Rmd file, above
-“### R Markdown”. WRITE THIS ARGUMENT INTO THAT KNITR FUNCTION:</h3>
-</div>
-</div>
-<div id="another-important-tool-i-use-is-in-the-file-browser-section-bottom-right-quadrant.-find-the-file-or-folder-that-you-would-like-to-set-as-your-wd-and-then-press-files.-an-option-to-set-as-working-directory-will-be-available.-press-it" class="section level2">
-<h2>Another important tool I use is in the File Browser section (bottom
-right quadrant). Find the file or folder that you would like to set as
-your wd, and then press “files”. An option to ‘set as working directory’
-will be available. PRESS IT!</h2>
-</div>
-<div id="in-addition-the-file-browser-introduces-an-option-called-synchronize-working-directory-when-you-have-selected-a-specific-filefolder.-synchronize-working-directory-refers-to-a-feature-ensures-that-the-current-wd-in-your-environment-is-synchronized-with-the-location-of-your-r-script-or-project-file.-while-there-is-no-code-to-my-knowledge-that-can-achieve-the-same-task-however-i-find-this-to-be-very-useful-when-staying-on-top-of-my-working-directory." class="section level2">
-<h2>In addition, the File Browser introduces an option called
-‘synchronize working directory’ when you have selected a specific
-file/folder. ‘synchronize working directory’ refers to a feature ensures
-that the current wd in your environment is synchronized with the
-location of your R script or project file. While there is no code (to my
-knowledge) that can achieve the same task, however I find this to be
-very useful when staying on top of my working directory.</h2>
-</div>
-<div id="getwd-setwd" class="section level2">
-<h2>GETWD() &amp; SETWD()</h2>
-<div id="this-may-seem-obvious-but-setting-a-working-directory-at-the-top-of-a-specific-code-chunk-will-allow-the-computer-to-know-what-directory-you-would-like-to-pull-from-in-a-specific-code-chunk.-when-making-a-markdown-file.-ideally-this-line-of-code-would-be-at-the-top-of-your-code-chunk-before-any-functions-need-to-interact-beyond-the-console." class="section level3">
-<h3>This may seem obvious, but setting a working directory at the top of
-a specific code chunk will allow the computer to know what directory you
-would like to pull from in a specific code chunk. When making a markdown
-file. Ideally, this line of code would be at the top of your code chunk,
-before any functions need to interact beyond the console.</h3>
-<pre class="r"><code>setwd(&quot;C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming&quot;)
-getwd()</code></pre>
-<pre><code>## [1] &quot;C:/Users/adcre/OneDrive/Documents/R_Programming&quot;</code></pre>
-</div>
-</div>
-<div id="mistakelearning-lesson" class="section level2">
-<h2>MISTAKE/LEARNING LESSON:</h2>
-<div id="when-initially-writing-this-code-i-was-not-aware-that-tidyverse-contains-many-of-the-packages-i-was-loading-even-though-they-came-with-tidyverse.-this-will-be-important-to-remember-as-it-caused-conflicts-in-my-output.-you-just-need-tidyverse.-how-neat" class="section level3">
-<h3>When initially writing this code, I was not aware that ‘tidyverse’
-contains many of the packages I was loading, even though they came with
-tidyverse. This will be important to remember, as it caused conflicts in
-my output. You just need ‘tidyverse’. How Neat!</h3>
-<pre class="r"><code># IN order to prevent conflicts from using multiple packages in the same
-# notebook, I will use the conflicted package
-library(conflicted)
+<div id="this-chunk-of-code-is-specifically-for-importing-csv-files-into-your-working-directory.-this-is-operating-under-the-assumption-that-your-working-directory-contains-the-csv-files-being-pulled-in-this-chunk.-the-arguments-are-good-opportunity-to-tell-your-system-about-any-incorrectmissing-values-so-make-sure-to-memorize-them-atleast-the-common-and-relevant-ones" class="section level3">
+<h3>This chunk of code is specifically for importing csv files into your
+working directory. This is operating under the assumption that your
+working directory contains the csv files being pulled in this chunk. The
+arguments are good opportunity to tell your system about any
+incorrect/missing values, so make sure to memorize them (atleast the
+common and relevant ones)!</h3>
+<pre class="r"><code># setwd(&quot;C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming&quot;)
+
+library(readr)
 library(tidyverse)</code></pre>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ dplyr     1.1.2     ✔ purrr     1.0.1
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
 ## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1</code></pre>
-</div>
-<div id="at-this-point-i-feel-prepared-to-import-the-csv-files-into-my-working-directory.-i-remain-very-cautious-in-these-situations-but-as-long-as-you-check-your-code-and-get-your-ducks-in-a-row-the-import-should-run-smoothly" class="section level3">
-<h3>At this point, I feel prepared to import the csv files into my
-working directory. I remain very cautious in these situations, but as
-long as you check your code and “get your ducks in a row”, the import
-should run smoothly!</h3>
-<pre class="r"><code>brain_data &lt;- read_csv(&quot;Brain_Data.csv&quot;, show_col_types = FALSE) %&gt;%
-    spec()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(dplyr)
 
-behavior_data &lt;- read_csv(&quot;Bx_Data.csv&quot;, show_col_types = FALSE) %&gt;%
-    spec()
-
-str((behavior_data))</code></pre>
-<pre><code>## 
-##  cols(
-##    ID = col_double(),
-##    SubjID = col_character(),
-##    Group = col_character(),
-##    Gender = col_double(),
-##    Sex = col_double(),
-##    Ethnicity = col_double(),
-##    Race = col_double(),
-##    Puberty = col_double(),
-##    Age_at_Bx = col_double(),
-##    Age_at_Scan = col_double(),
-##    Height = col_double(),
-##    Weight = col_double(),
-##    Bx_to_Scan_Days = col_double(),
-##    CDRSR_total = col_double(),
-##    CDRSR_tscore = col_double(),
-##    Current_Med = col_double(),
-##    Recurrent_Past_Month = col_double(),
-##    Recurrent_Current_Duration_Weeks = col_double(),
-##    Age_First_SI = col_double(),
-##    SI_Group = col_double(),
-##    SI_Past_Month = col_double(),
-##    Hx.Attempt = col_double(),
-##    Age.First.Attempt = col_double(),
-##    Number.of.Attempts = col_double(),
-##    RADS_DM = col_double(),
-##    RADS_AN = col_double(),
-##    RADS_NS = col_double(),
-##    RADS_SC = col_double(),
-##    RADS_total = col_double(),
-##    PHQ9 = col_double(),
-##    PHQ9_q9 = col_double(),
-##    SIQ = col_double()
-##  )</code></pre>
+Brain_Data &lt;- read_csv(&quot;Brain_Data.csv&quot;)</code></pre>
+<pre><code>## Rows: 49 Columns: 7
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): Group
+## dbl (6): ID, RSFC1, RSFC2, RSFC3, RSFC4, RSFC5
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>Bx_Data &lt;- read_csv(&quot;Bx_Data.csv&quot;)</code></pre>
+<pre><code>## Rows: 55 Columns: 32
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (2): SubjID, Group
+## dbl (30): ID, Gender, Sex, Ethnicity, Race, Puberty, Age_at_Bx, Age_at_Scan,...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>str((Bx_Data))</code></pre>
+<pre><code>## spc_tbl_ [55 × 32] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ ID                              : num [1:55] 1 2 3 4 5 6 7 8 9 10 ...
+##  $ SubjID                          : chr [1:55] &quot;01-T1&quot; &quot;02-T1&quot; &quot;03-T1&quot; &quot;04-T1&quot; ...
+##  $ Group                           : chr [1:55] &quot;MDD&quot; &quot;MDD&quot; &quot;MDD&quot; &quot;MDD&quot; ...
+##  $ Gender                          : num [1:55] 2 1 2 1 2 2 2 2 3 1 ...
+##  $ Sex                             : num [1:55] 2 1 2 1 2 2 2 2 2 1 ...
+##  $ Ethnicity                       : num [1:55] 2 2 1 2 1 2 2 2 1 2 ...
+##  $ Race                            : num [1:55] 5 6 7 5 6 2 5 2 1 5 ...
+##  $ Puberty                         : num [1:55] 3.5 4 3.5 4.5 4 4 5 4.5 4.5 5 ...
+##  $ Age_at_Bx                       : num [1:55] 15.2 13.6 15.7 15.1 14.3 ...
+##  $ Age_at_Scan                     : num [1:55] 15.2 13.7 15.8 15.1 14.3 ...
+##  $ Height                          : num [1:55] 63.5 67.5 59.1 70.5 64 62.1 62 67 63.8 66.9 ...
+##  $ Weight                          : num [1:55] 167 107.6 91.4 125.4 179 ...
+##  $ Bx_to_Scan_Days                 : num [1:55] 12 8 29 7 7 5 11 7 14 13 ...
+##  $ CDRSR_total                     : num [1:55] 53 33 50 42 65 49 49 81 70 61 ...
+##  $ CDRSR_tscore                    : num [1:55] 70 58 68 64 80.5 67.5 67.5 86 83 77 ...
+##  $ Current_Med                     : num [1:55] 0 0 0 1 1 1 1 0 1 1 ...
+##  $ Recurrent_Past_Month            : num [1:55] 1 3 1 3 3 3 3 3 3 1 ...
+##  $ Recurrent_Current_Duration_Weeks: num [1:55] NA 2 NA 156 364 156 312 8 676 NA ...
+##  $ Age_First_SI                    : num [1:55] NA 12 13 13 10 12 14 13 8 NA ...
+##  $ SI_Group                        : num [1:55] 0 1 1 1 1 1 1 1 1 0 ...
+##  $ SI_Past_Month                   : num [1:55] 1 3 2 1 3 2 1 3 3 1 ...
+##  $ Hx.Attempt                      : num [1:55] 0 1 1 0 1 0 0 0 1 0 ...
+##  $ Age.First.Attempt               : num [1:55] NA 13 15 NA 10 NA NA NA 10 NA ...
+##  $ Number.of.Attempts              : num [1:55] 0 2 1 0 3 0 0 0 5 0 ...
+##  $ RADS_DM                         : num [1:55] 26 26 25 25 27 30 27 32 32 30 ...
+##  $ RADS_AN                         : num [1:55] 11 19 13 18 10 19 13 25 16 16 ...
+##  $ RADS_NS                         : num [1:55] 16 32 21 25 29 25 21 29 29 19 ...
+##  $ RADS_SC                         : num [1:55] 21 22 18 18 28 23 17 26 26 22 ...
+##  $ RADS_total                      : num [1:55] 74 99 77 86 94 97 78 112 103 87 ...
+##  $ PHQ9                            : num [1:55] 19 14 18 16 19 21 16 23 23 21 ...
+##  $ PHQ9_q9                         : num [1:55] 1 3 0 1 3 2 1 2 2 2 ...
+##  $ SIQ                             : num [1:55] 10 50 17 42 34 75 34 74 52 11 ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   ID = col_double(),
+##   ..   SubjID = col_character(),
+##   ..   Group = col_character(),
+##   ..   Gender = col_double(),
+##   ..   Sex = col_double(),
+##   ..   Ethnicity = col_double(),
+##   ..   Race = col_double(),
+##   ..   Puberty = col_double(),
+##   ..   Age_at_Bx = col_double(),
+##   ..   Age_at_Scan = col_double(),
+##   ..   Height = col_double(),
+##   ..   Weight = col_double(),
+##   ..   Bx_to_Scan_Days = col_double(),
+##   ..   CDRSR_total = col_double(),
+##   ..   CDRSR_tscore = col_double(),
+##   ..   Current_Med = col_double(),
+##   ..   Recurrent_Past_Month = col_double(),
+##   ..   Recurrent_Current_Duration_Weeks = col_double(),
+##   ..   Age_First_SI = col_double(),
+##   ..   SI_Group = col_double(),
+##   ..   SI_Past_Month = col_double(),
+##   ..   Hx.Attempt = col_double(),
+##   ..   Age.First.Attempt = col_double(),
+##   ..   Number.of.Attempts = col_double(),
+##   ..   RADS_DM = col_double(),
+##   ..   RADS_AN = col_double(),
+##   ..   RADS_NS = col_double(),
+##   ..   RADS_SC = col_double(),
+##   ..   RADS_total = col_double(),
+##   ..   PHQ9 = col_double(),
+##   ..   PHQ9_q9 = col_double(),
+##   ..   SIQ = col_double()
+##   .. )
+##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
+<div id="its-important-to-remember-that-th-data-you-are-importing-could-have-missing-values-incorrect-values-and-other-pieces-of-data-that-need-to-be-attended-to-by-the-software.-using-the-arguments-in-this-chunk-is-a-good-example-of-weeding-out-the-missing-values-and-other-data-that-isnt-wanted." class="section level4">
+<h4>It’s important to remember that th data you are importing could have
+missing values, incorrect values, and other pieces of data that need to
+be attended to by the software. Using the arguments in this chunk is a
+good example of weeding out the missing values and other data that isn’t
+wanted.</h4>
 </div>
-<div id="what-if-we-are-downloading-csv-files-from-the-web-to-some-exploratory-analysis-like-from-kaggle.com" class="section level3">
-<h3>What if we are downloading csv files from the web to some
-exploratory analysis, like from Kaggle.com?</h3>
-<div id="this-next-code-chunk-is-an-example-of-downloading-a-data-set-from-the-internet-so-that-it-is-expressed-as-a-data-frame-in-your-working-directory.-it-is-a-depression-data-set-randomly-chosen-on-kaggle-and-i-want-to-write-the-code-that-will-grab-it-from-the-specific-url-that-refers-to-the-specific-data-set-or-some-code-that-will-achieve-the-same-goal-but-in-different-ways.-the-data-set-can-be-found-with-this-link-httpswww.kaggle.comdatasetsarashnicthe-depression-dataset-in-this-example-we-will-show-how-to-get-the-data-set-into-a-df-after-downloading-it-and-extracting-the-zip-file-i-find-this-to-be-easiest-at-my-current-skill-level" class="section level4">
+</div>
+<div id="what-if-we-are-downloading-csv-files-from-the-internet-to-do-some-exploratory-data-analysis-for-example-what-if-i-found-an-interesting-data-set-on-kaggle" class="section level3">
+<h3>What if we are downloading csv files from the internet to do some
+exploratory data analysis? For example, what if i found an interesting
+data set on Kaggle?</h3>
+<div id="this-next-code-chunk-is-an-example-of-downloading-a-data-set-from-the-internet-so-that-it-is-expressed-as-a-data-frame-in-your-working-directory.-it-is-a-depression-data-set-randomly-chosen-on-kaggle-and-i-want-to-write-the-code-that-will-grab-it-from-the-specific-url-that-refers-to-the-specific-data-set-or-some-code-that-will-achieve-the-same-goal-but-in-different-ways.-using-kaggle-data-usually-requires-installing-the-kaggle-package-and-having-permission-or-an-api-token-to-use-the-data-for-exploratory-analysis.-the-data-set-can-be-found-with-this-link-httpswww.kaggle.comdatasetsarashnicthe-depression-dataset-always-remember-directories-wheres-your-data-coming-fromgoing-to" class="section level4">
 <h4>This next code chunk is an example of downloading a data set from
 the internet so that it is expressed as a data frame in your working
 directory. It is a depression data set randomly chosen on Kaggle, and I
 want to write the code that will grab it from the specific URL that
 refers to the specific data set, or some code that will achieve the same
-goal but in different ways. The data set can be found with this link: <a href="https://www.kaggle.com/datasets/arashnic/the-depression-dataset" class="uri">https://www.kaggle.com/datasets/arashnic/the-depression-dataset</a>
-In this example, we will show how to get the data set into a df after
-downloading it and extracting the zip file (I find this to be easiest at
-my current skill level)</h4>
-<pre class="r"><code># Assuming the csv file has been extracted and is in your working directory, he
-# only arguments I will introduce in this chunk is the &#39;show_col_types&#39;
-# argument, which is a useful argument that comes with the &#39;readr&#39; package.
-# When show_col_types=FALSE, it will not show you the type of data that is in
-# each column, and vice versa for show_col_types=TRUE. In other words, if you
-# have a data set in which the column types (numeric, categorical, etc)
-library(tidyverse)
-dep_scores &lt;- read_csv(&quot;scores.csv&quot;, show_col_types = FALSE)
-View(dep_scores)
+goal but in different ways. Using Kaggle data usually requires
+installing the Kaggle package, and having permission or an API token to
+use the data for exploratory analysis. the data set can be found with
+this link: <a href="https://www.kaggle.com/datasets/arashnic/the-depression-dataset" class="uri">https://www.kaggle.com/datasets/arashnic/the-depression-dataset</a>
+ALWAYS REMEMBER DIRECTORIES!!!! Where’s your data coming from/going
+to?</h4>
+</div>
+<div id="in-this-example-we-will-show-how-to-get-the-data-set-into-a-df-after-downloading-it-and-extracting-the-zip-file-i-find-this-to-be-easiest-at-my-current-skill-level" class="section level4">
+<h4>In this example, we will show how to get the data set into a df
+after downloading it and extracting the zip file (I find this to be
+easiest at my current skill level)</h4>
+<pre class="r"><code># setwd(&quot;C:\\Users\\adcre\\OneDrive\\Documents\\R_Programming&quot;)
 
-# Next, view your assigned variable to make sure that your data frame was made
-# properly
-View(dep_scores)
+# Assuming the csv file has been extracted and is in your working directory....
+# We won&#39;t focus on additional arguments, so that we can focus on one thing at a time
 
-# Instead of using the view function, you can also use the str or &#39;structure&#39;
-# function, which will give you a shorter but more descriptive output of the
-# entire data set
-str(dep_scores)</code></pre>
+library(readr)
+scores &lt;- read_csv(&quot;scores.csv&quot;)</code></pre>
+<pre><code>## Rows: 55 Columns: 12
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (3): number, age, edu
+## dbl (9): days, gender, afftype, melanch, inpatient, marriage, work, madrs1, ...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>View(scores)
+
+# Next, view your assigned variable to make sure that your data frame was made properly
+View(scores)
+
+# Instead of using the view function, you can also use the str or &quot;structure&quot; function, which will give you a shorter but more descriptive output of the entire data set
+str(scores)</code></pre>
 <pre><code>## spc_tbl_ [55 × 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ number   : chr [1:55] &quot;condition_1&quot; &quot;condition_2&quot; &quot;condition_3&quot; &quot;condition_4&quot; ...
 ##  $ days     : num [1:55] 11 18 13 13 13 7 11 5 13 9 ...
@@ -571,16 +592,15 @@ str(dep_scores)</code></pre>
 <h3>Remember that the bottom right quadrant is excellent for doing these
 same tasks, just not programatically. However, let’s practice unzipping
 a file obtained from the internet!</h3>
-<pre class="r"><code># Assuming the ZIPPED csv file has been extracted and is in your working
-# directory, unzip the downloaded file
-unzip(&quot;kaggle_zipped_data.zip&quot;)
-
-# Read the unzipped CSV file into a dataframe
-library(readr)
-dep_scores &lt;- read_csv(&quot;scores.csv&quot;, show_col_types = FALSE)
-
-# Make sure to check if your data frame was created and looks good!
-str(dep_scores)</code></pre>
+<pre><code>## Warning in unzip(&quot;DEP_DATA_KAGGLE.zip&quot;): error 1 in extracting from zip file</code></pre>
+<pre><code>## Rows: 55 Columns: 12
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (3): number, age, edu
+## dbl (9): days, gender, afftype, melanch, inpatient, marriage, work, madrs1, ...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre><code>## spc_tbl_ [55 × 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ number   : chr [1:55] &quot;condition_1&quot; &quot;condition_2&quot; &quot;condition_3&quot; &quot;condition_4&quot; ...
 ##  $ days     : num [1:55] 11 18 13 13 13 7 11 5 13 9 ...
@@ -611,24 +631,24 @@ str(dep_scores)</code></pre>
 ##   .. )
 ##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
 </div>
-</div>
-<div id="post-session-reflection" class="section level2">
-<h2>Post-session REFLECTION:</h2>
-<div id="i-first-want-to-make-note-of-a-mistake-i-made-when-setting-working-directories-within-an-r-markdown-file-and-running-the-code-through-the-console-expecting-the-computer-to-know-where-the-data-is-at-all-times.-after-speaking-with-gpt-it-appears-that-i-failed-to-establish-a-reliable-method-of-knowing-what-directory-i-am-pulling-from-or-at-least-attempting-to-pull-from." class="section level3">
-<h3>I first want to make note of a mistake I made when setting working
+<div id="reflection" class="section level2">
+<h2>REFLECTION</h2>
+<div id="i-first-want-to-make-note-of-a-mistake-i-made-when-setting-working-directories-within-an-r-markdown-file-and-running-the-code-through-the-console-expecting-the-computer-to-know-where-the-data-is-at-all-times.-after-speaking-with-gpt-it-appears-that-i-failed-to-establish-a-reliable-method-of-knowing-what-directory-i-am-pulling-from-or-at-least-attempting-to-pull-from." class="section level4">
+<h4>I first want to make note of a mistake I made when setting working
 directories within an R Markdown file, and running the code through the
 console expecting the computer to know where the data is at all times.
 After speaking with GPT, it appears that I failed to establish a
 reliable method of knowing what directory I am pulling from (or at
-least, attempting to pull from).</h3>
+least, attempting to pull from).</h4>
 </div>
-<div id="one-unexpected-argument-that-i-found-myself-using-frequently-was-the-include-and-echo-arguments.-if-you-choose-true-for-include-the-output-will-contain-the-code-chunk-whereas-false-would-omit-that-code.-same-goes-for-echo-but-this-argument-is-referring-to-the-output-being-shown-or-not.-each-function-has-their-benefits-in-certain-circumstances." class="section level3">
-<h3>One unexpected argument that I found myself using frequently was the
-‘include’ and ‘echo’ arguments. If you choose TRUE for include, the
-output will contain the code chunk, whereas FALSE would omit that code.
-Same goes for ‘echo’, but this argument is referring to the OUTPUT being
-shown or not. Each function has their benefits in certain
-circumstances.</h3>
+<div id="since-this-is-the-first-rmd-project-i-will-be-using-in-the-future-i-want-to-purposely-leave-it-alone-as-much-as-possible-with-regard-to-the-way-i-solve-the-problems-and-the-aesthetic-nature-of-the-code.-i-think-looking-at-this-rmd-i-can-see-so-many-ways-in-which-i-have-already-improved.-this-includes-decision-making-structure-purpose-and-many-other-things-that-i-can-reflect-on-by-appreciating-how-far-i-have-come-and-using-these-mistakes-as-learning-lessons." class="section level4">
+<h4>Since this is the first Rmd project I will be using in the future, I
+want to purposely leave it alone as much as possible with regard to the
+way I solve the problems and the aesthetic nature of the code. I think
+looking at this Rmd, I can see so many ways in which I have already
+improved. This includes decision-making, structure, purpose, and many
+other things that I can reflect on by appreciating how far I have come,
+and using these mistakes as learning lessons.</h4>
 </div>
 </div>
 </div>
